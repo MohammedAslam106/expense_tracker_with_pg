@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import Navbar from '@/components/Navbar'
 import './globals.css'
@@ -7,7 +7,7 @@ import { Inter } from 'next/font/google'
 import Footer from '@/components/Footer'
 import ToastProvider from '@/components/ToastProvider'
 import JWTProvider from '@/components/JWTProvider'
-import { NextUIProvider } from '@nextui-org/react'
+// import { NextUIProvider } from '@nextui-org/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,11 +25,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <JWTProvider>
-          <NextUIProvider>
+          {/* <NextUIProvider> */}
             <ToastProvider>
               {children}
             </ToastProvider>
-          </NextUIProvider>
+          {/* </NextUIProvider> */}
         </JWTProvider>
       </body>
     </html>

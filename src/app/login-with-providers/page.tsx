@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
+// import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
 import { TbLoader2 } from "react-icons/tb"
 import { toast } from "react-toastify"
@@ -20,7 +20,7 @@ type formData=z.infer<typeof loginSchema>
 export default function Page({}:pageProps ){
     const [loader,setLoader]=useState<boolean>(false)
     const {register,setError,formState:{errors},handleSubmit}=useForm<formData>({
-        resolver:zodResolver(loginSchema)
+        // resolver:zodResolver(loginSchema)
     })
     async function loginWithProviders(data:formData){
         setLoader(true)

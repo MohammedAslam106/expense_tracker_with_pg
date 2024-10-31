@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TbEye, TbEyeOff, TbLoader2 } from "react-icons/tb";
 import {useForm} from 'react-hook-form'
 import {z} from 'zod'
-import { zodResolver } from "@hookform/resolvers/zod";
+// import { zodResolver } from "@hookform/resolvers/zod";
 import {toast} from 'react-toastify'
 import { useRouter } from "next/navigation";
 
@@ -23,7 +23,7 @@ export default function Page({}:pageProps ){
     const [showPassword,setShowPassword]=useState<boolean>(false)
     type formData=z.infer<typeof loginSchema>
     const {register,setError,formState:{errors},handleSubmit}=useForm<formData>({
-        resolver:zodResolver(loginSchema)
+        // resolver:zodResolver(loginSchema)
     })
 
     const onSubmit=async(data:formData)=>{

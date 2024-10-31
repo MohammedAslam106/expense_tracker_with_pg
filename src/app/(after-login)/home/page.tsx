@@ -1,7 +1,7 @@
 'use client'
 import AddButton from "@/components/AddButton";
 import { LineChart } from "@/components/LineChart";
-import { FC, useEffect, useState } from "react";
+// import { FC, useEffect, useState } from "react";
 
 interface pageProps{
     name:String,
@@ -10,37 +10,37 @@ interface pageProps{
 }
 
 
-const mb=(time:number)=>new Promise((resolve)=>setTimeout(resolve,time))
-const Page:FC<pageProps>=({name,age,dob})=>{
-    const [dateFrom,setDateFrom]=useState<any>(null)
-    const [dateTo,setDateTo]=useState<any>(null)
-    const [range,setRange]=useState<number>(0)
-    const [labels,setLabels]=useState<string[]>(['January', 'February', 'March', 'April', 'May',])
-    const [dataValue,setDataValue]=useState<number[]>([100,20,3000,40,5,])
-    // const labels = ['January', 'February', 'March', 'April', 'May',];
+// const mb=(time:number)=>new Promise((resolve)=>setTimeout(resolve,time))
+export default function page(){
+    // const [dateFrom,setDateFrom]=useState<any>(null)
+    // const [dateTo,setDateTo]=useState<any>(null)
+    // const [range,setRange]=useState<number>(0)
+    // const [labels,setLabels]=useState<string[]>(['January', 'February', 'March', 'April', 'May',])
+    // const [dataValue,setDataValue]=useState<number[]>([100,20,3000,40,5,])
+    // // const labels = ['January', 'February', 'March', 'April', 'May',];
     
-    const data = {
-        labels,
-        datasets: [
-          {
-            label: 'Dataset 1',
-            // data: [100,200,300,400,500,],
-            data:dataValue,
-            borderColor: 'rgba(255, 255, 255)',
-            backgroundColor: 'rgba(0,0,0, 0.5)',
-          },
-        ],
-      };
+    // const data = {
+    //     labels,
+    //     datasets: [
+    //       {
+    //         label: 'Dataset 1',
+    //         // data: [100,200,300,400,500,],
+    //         data:dataValue,
+    //         borderColor: 'rgba(255, 255, 255)',
+    //         backgroundColor: 'rgba(0,0,0, 0.5)',
+    //       },
+    //     ],
+    //   };
 
-      useEffect(()=>{
-        if (range==0 || Number.isNaN(range)) setDataValue([100,20,3000,40,5,])
-        else setDataValue(Array(5).fill(0).map((val,i)=>range/5*i+1))
-        // setLabels()
-      },[dateFrom,dateTo,range])
+    //   useEffect(()=>{
+    //     if (range==0 || Number.isNaN(range)) setDataValue([100,20,3000,40,5,])
+    //     else setDataValue(Array(5).fill(0).map((val,i)=>range/5*i+1))
+    //     // setLabels()
+    //   },[dateFrom,dateTo,range])
 
     return(
         <>
-            <div className="relative text-white bg-[#010922] min-h-screen sm:px-24 px-6 flex flex-col justify-center items-center  ">
+            {/* <div className="relative text-white bg-[#010922] min-h-screen sm:px-24 px-6 flex flex-col justify-center items-center  ">
                 <h1 className=" font-bold text-xl  sm:text-3xl py-5 text-left nav-btn">
                     Track Your <i className="text-[#522d8b]">Spendings.</i>
                 </h1>
@@ -78,9 +78,10 @@ const Page:FC<pageProps>=({name,age,dob})=>{
                     </div>
                 </div>
             <AddButton/>
-            </div>
+            </div> */}
+            <p>Hello World</p>
         </>
     )
 }
 
-export default Page;
+// export default Page;
