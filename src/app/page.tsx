@@ -5,10 +5,14 @@ import Link from "next/link";
 import { useState } from "react";
 import {TbMapPin,TbMail, TbList, TbX, TbPhone, TbBrandGithub,TbBrandLinkedin,TbBrandX, TbArrowLeft, TbArrowRight} from 'react-icons/tb'
 import { useRouter } from "next/navigation";
+import {useSession} from 'next-auth/react'
 
 export default function Home() {
   const [showNavbar,setShowNavbar]=useState<boolean>(false)
   const router=useRouter()
+  const {data:session}= useSession()
+  // console.log(18,session)
+
   return (
     <>
       <div className=" w-full bg-[#010922]">

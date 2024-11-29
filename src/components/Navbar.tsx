@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { TbList, TbX } from "react-icons/tb"
+import { TbList, TbLoader, TbLoader2, TbX } from "react-icons/tb"
 import { getTokenData } from "@/helpers/get-data-from-token"
 import Image from "next/image"
 import MyModal from "./Modal"
 import ExpenseForm from "./ExpenseForm"
 import CategoryForm from "./CategoryForm"
+import { signOut, useSession } from "next-auth/react"
 
 interface NavbarProps{
     
@@ -22,30 +23,25 @@ export default function Navbar({}:NavbarProps ){
     const[image,setImage]=useState<string>('')
     const [showCreatItems,setShowCreateItems]=useState<boolean>(false)
     const router=useRouter()
-    useEffect(()=>{
-      const tokenInfo=getTokenData(window.localStorage.getItem('token') || '')
-      console.log(tokenInfo)
-      setUser(tokenInfo)
-      const getProfilePicture=async()=>{
-        const response=await (await fetch(`/api/get-profile-picture/${tokenInfo.image}`,{
-          method:'GET',
-          headers:{
-            'Content-Type':'application/json'
-          }
-        })).json()
-        console.log(response)
-        setImage(response.image[0].image)
-      }
-      getProfilePicture()
-    },[])
+
+    const {data:session}=useSession()
+
+    // console.log(29,session?.user)
+    
     return(
         <>
             {/* Navbar big screen */}
         <nav  className=" z-30 mobile-h:sticky sm:block hidden sticky bg-[#010922] top-0 w-full py-5 sm:px-24 px-6 shadow-2xl text-white ">
           <div className=" flex justify-between items-center">
             <div className="relative "  onMouseLeave={()=>setShowCreateItems(false)}>
-              <button  onMouseOver={()=>setShowCreateItems(true)} type="button" className="  w-10 h-10 rounded-full ring-1 ">
-                <Image unoptimized className=" object-cover rounded-full" src={image} width={100} height={100} alt="not found"/>
+              <button  onMouseOver={()=>setShowCreateItems(true)} type="button" className="  w-10 h-10 rounded-full ring-1 justify-center items-center flex ">
+                {
+                  session?.user?
+                  <Image unoptimized className=" object-cover rounded-full" src={session?.user?.image ?? `https://ui-avatars.com/api/?rounded=true&background=random&bold=true&format=svg&name=${session?.user?.name}`} width={100} height={100} alt="not found"/>: 
+                  <TbLoader2 className=" animate-spin "/>
+
+                }
+
               </button>
               {showCreatItems && <div  className=" w-40 bg-black text-white rounded shadow-sm absolute top-10 left-0">
                 <ul>
@@ -87,13 +83,14 @@ export default function Navbar({}:NavbarProps ){
               className=" font-semibold nav-btn hover:text-[#522d8b] border border-transparent hover:border-[#522d8b] p-2 px-5 rounded shadow-sm hover:bg-gray-100"
                 // className=" ring-slate-500 hover:ring-1 hover:bg-white hover:text-black font-semibold p-2 px-6 shadow-sm bg-[#522d8b] rounded-full"
                 onClick={async()=>{
-                  const logout=await (await fetch('/api/logout',{
-                    method:'GET',
-                    headers:{
-                      'content-type':'application/json'
-                    }
-                  })).json()
-                  window.location.reload()
+                  // const logout=await (await fetch('/api/logout',{
+                  //   method:'GET',
+                  //   headers:{
+                  //     'content-type':'application/json'
+                  //   }
+                  // })).json()
+                  // window.location.reload()
+                  await signOut()
                 }
                 }
                 type="button"
@@ -149,13 +146,14 @@ export default function Navbar({}:NavbarProps ){
             </li>
             <li className=" w-full">
               <button className=" w-full text-left py-2 hover:text-[#522d8b]" onClick={async()=>{
-                  const logout=await (await fetch('/api/logout',{
-                    method:'GET',
-                    headers:{
-                      'content-type':'application/json'
-                    }
-                  })).json()
-                  window.location.reload()
+                  // const logout=await (await fetch('/api/logout',{
+                  //   method:'GET',
+                  //   headers:{
+                  //     'content-type':'application/json'
+                  //   }
+                  // })).json()
+                  // window.location.reload()
+                  await signOut()
                 }
                 }
                 type="button">
