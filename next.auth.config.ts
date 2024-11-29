@@ -144,6 +144,7 @@ export const nextAuthConfig = {
         }
     },
     // secret: process.env.AUTH_SECRET!,
+    secret: process.env.NEXT_PUBLIC_SECRET
 
 } satisfies NextAuthConfig
 
